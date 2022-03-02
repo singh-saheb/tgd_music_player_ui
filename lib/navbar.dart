@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tgd_music_player/colors.dart';
 
-class NavigationBar extends StatelessWidget {
+class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

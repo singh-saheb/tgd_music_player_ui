@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          NavigationBar(),
+          NavBar(),
           Container(
             margin: EdgeInsets.only(left: 40),
             height: height / 2.5,
