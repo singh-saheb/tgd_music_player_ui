@@ -1,59 +1,50 @@
-
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-class MyAudio extends ChangeNotifier{
-
+class MyAudio extends ChangeNotifier {
   Duration totalDuration;
   Duration position;
   String audioState;
 
-  MyAudio(){
+  MyAudio() {
     initAudio();
   }
 
   AudioPlayer audioPlayer = AudioPlayer();
 
-  initAudio(){
+  initAudio() {
     audioPlayer.onDurationChanged.listen((updatedDuration) {
-        totalDuration = updatedDuration;
-        notifyListeners();
+      totalDuration = updatedDuration;
+      notifyListeners();
     });
 
     audioPlayer.onAudioPositionChanged.listen((updatedPosition) {
-        position = updatedPosition;
-        notifyListeners();
+      position = updatedPosition;
+      notifyListeners();
     });
 
-    audioPlayer.onPlayerStateChanged.listen((playerState) {
-      if(playerState == AudioPlayerState.STOPPED)
-        audioState = "Stopped";
-      if(playerState==AudioPlayerState.PLAYING)
-        audioState = "Playing";
-      if(playerState == AudioPlayerState.PAUSED)
-        audioState = "Paused";
+    audioPlayer.onPlayerStateChanged.listen((playerStateEvent) {
+      if (playerStateEvent == PlayerState.STOPPED) audioState = "Stopped";
+      if (playerStateEvent == PlayerState.PLAYING) audioState = "Playing";
+      if (playerStateEvent == PlayerState.PAUSED) audioState = "Paused";
       notifyListeners();
     });
   }
 
-  playAudio(){
-    audioPlayer.play('https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4');
+  playAudio() {
+    audioPlayer.play(
+        'https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4');
   }
 
-
-  pauseAudio(){
+  pauseAudio() {
     audioPlayer.pause();
   }
 
-  stopAudio(){
+  stopAudio() {
     audioPlayer.stop();
   }
 
-  seekAudio(Duration durationToSeek){
+  seekAudio(Duration durationToSeek) {
     audioPlayer.seek(durationToSeek);
   }
-
-
-
 }
